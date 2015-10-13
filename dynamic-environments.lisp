@@ -19,4 +19,4 @@
     (apply #'funcall thunk args)))
 
 (defmacro with-dynamic-env ((env) &body body)
-  `(call-with-dynamic-environment ,env (lambda () ,@body)))
+  `(resume-env ,env (lambda () ,@body)))
