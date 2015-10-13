@@ -1,0 +1,37 @@
+* dynamic-environments
+  =dynamic-environments= is a small library for saving and resuming
+  dynamic environments.
+
+* Usage
+  : (defun foo ()
+  :   (declare (special *special-2*))
+  :   *special-2*)
+  :
+  : (let ((env (let ((*special-1* 1)
+  :                  (*special-2* 2))
+  :              (declare (special *special-1*
+  :                                *special-2*))
+  :              (make-dynamic-env '*special-2*))))
+  :   (resume-env env #'foo) ; => 2
+  :   (with-dynamic-env (env)
+  :     (foo) ; => 2))
+
+
+* API
+** dynamic-environment
+   This is the type of dynamic environments created by the library.
+
+** make-dynamic-env
+   Takes a list of symbols with dynamic bindings and returns an
+   environment that captures the symbols and their value in the
+   current dynamic environment.
+
+** resume-env
+   =(resume-env env func &rest args)= re-establishes the dynamic
+   environment captured by =env=, and calls =func= with =args= in that
+   environment.
+
+** with-dynamic-env
+   =(with-dynamic-env (env) &body body)= is a convenience macro that
+   re-establishes the dynamic environment captured by =env= and
+   evaluates =body= within that environment.
