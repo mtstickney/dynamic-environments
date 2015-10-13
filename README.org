@@ -6,7 +6,7 @@
   : (defun foo ()
   :   (declare (special *special-2*))
   :   *special-2*)
-  :
+
   : (let ((env (let ((*special-1* 1)
   :                  (*special-2* 2))
   :              (declare (special *special-1*
