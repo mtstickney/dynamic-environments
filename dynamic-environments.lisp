@@ -6,7 +6,7 @@
   (variables)
   (values))
 
-(defun make-dynamic-env (&rest vars)
+(defun capture-env (&rest vars)
   (%make-dynamic-environment
    :variables vars
    :values (mapcar #'symbol-value vars)))

@@ -3,6 +3,6 @@
 (defpackage #:dynamic-environments
   (:use #:cl)
   (:export #:dynamic-environment
-           #:make-dynamic-env
+           #:capture-env
            #:resume-env
            #:with-dynamic-env))
